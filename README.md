@@ -1,6 +1,6 @@
-# Goat X Eroge - Oficial Launch Countdown
+# Goat X Eroge - Proyecto Personal
 
-Este repositorio contiene la página oficial del lanzamiento para la nueva experiencia de **Goat X Eroge**. Este proyecto es una landing page moderna, rápida y dinámica que he construido con **Astro** y **React**.
+Este repositorio contiene un proyecto personal creado para demostrar mis habilidades y mejorar la experiencia de la landing page de **Goat X Eroge**. Es una versión reimaginada, moderna, rápida y dinámica que he construido con **Astro** y **React** para demostrar que se puede hacer mejor.
 
 ## 🚀 Características
 - **Contador regresivo dinámico:** Visualización clara de los días, horas, minutos y segundos restantes.
@@ -52,7 +52,7 @@ No utilicé librerías externas pesadas. Construí el gestor de idiomas de maner
 - Si quieres agregar un idioma nuevo, simplemente agrégalo al diccionario (por ejemplo `fr` para francés) en cada uno de estos archivos, y añade una opción nueva en el menú desplegable (línea 132 de `index.astro`).
 
 ## 🔒 Estabilidad
-Audité y optimicé el proyecto para que sea desplegado en plataformas como Vercel, Netlify o GitHub Pages sin realizar configuraciones adicionales. La carpeta `node_modules` es fundamental localmente para ejecutar los componentes, pero la excluí correctamente de GitHub mediante `.gitignore`.
+Audité y optimicé el proyecto para ser veloz y seguro. La carpeta `node_modules` es fundamental localmente para ejecutar los componentes, pero la excluí correctamente mediante `.gitignore`.
 
 <br/><br/>
 <div align="right"><sub style="font-size: 8px; opacity: 0.5;">gracias antigravity</sub></div>
