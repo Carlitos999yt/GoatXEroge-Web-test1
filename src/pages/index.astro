@@ -10,7 +10,21 @@ import NotifyForm from "../components/NotifyForm";
 const progressPercentage = 25; // Cambia el % de progreso (ej: 95)
 const progressDurationSeconds = 1; // Segundos que dura la animación (ej: 2.5)
 const visualTitleDate = "67 / 06 / 2026"; // Texto de la fecha central que se lee en pantalla
-const countdownTarget = "2026-06-07T00:00:00-05:00"; // Fecha real para el reloj. FORMATO EXACTO: "Año-Mes-DíaTHora:Min:Seg-Zona" (Ej: 2026-06-07T15:30:00-05:00 para 3:30 PM hora Perú/Colombia)
+// ==========================================
+// CONFIGURACIÓN DE LA FECHA (Reloj Regresivo)
+// ==========================================
+// FORMATO EXACTO: "Año-Mes-DíaTHora:Min:Seg-Zona"
+// La "Zona" (-05:00) es muy importante porque indica tu país en relación a la hora global (UTC).
+// 
+// GUÍA DE ZONAS (Si no pones la correcta, el contador terminará a otra hora):
+// "-05:00" -> Perú, Colombia, Ecuador, Panamá, México (Centro, sin horario de verano)
+// "-06:00" -> Centroamérica, México (CDMX en invierno)
+// "-04:00" -> Venezuela, Bolivia, Rep. Dominicana, Chile (invierno), Miami (verano)
+// "-03:00" -> Argentina, Uruguay, Brasil (Brasilia), Chile (verano)
+// "+01:00" -> España (Península en invierno) o "+02:00" (España en verano)
+// 
+// Ejemplo final: "2026-06-07T15:30:00-05:00" (El contador terminará el 7 de Junio de 2026 a las 3:30 PM hora Perú)
+const countdownTarget = "2026-06-07T00:00:00-05:00"; 
 const playCurtainOnce = true; // true: El telón se ve solo 1 vez. false: El telón se ve SIEMPRE que recargas la página.
 
 // ==========================================
