@@ -10,7 +10,8 @@ import NotifyForm from "../components/NotifyForm";
 const progressPercentage = 25; // Cambia el % de progreso (ej: 95)
 const progressDurationSeconds = 1; // Segundos que dura la animación (ej: 2.5)
 const visualTitleDate = "67 / 06 / 2026"; // Texto de la fecha central que se lee en pantalla
-const countdownTarget = "2026-05-30T18:44:00-05:00"; // Fecha real para el contador (Año-Mes-DíaTHora:Min:Seg-Zona)
+const countdownTarget = "2026-06-07T00:00:00-05:00"; // Fecha real para el reloj
+const playCurtainOnce = true; // true: El telón se ve solo 1 vez. false: El telón se ve SIEMPRE que recargas la página.
 
 // ==========================================
 // CONFIGURACIÓN DE LA INSIGNIA (Badge)
@@ -47,7 +48,7 @@ const socialLinks = {
   </head>
   <body>
     <!-- TELÓN DE INTRODUCCIÓN -->
-    <div id="intro-curtain" class="curtain-container">
+    <div id="intro-curtain" class="curtain-container" data-play-once={playCurtainOnce ? "true" : "false"}>
       <div class="curtain-left">
         <div style="padding-right: 20px; font-family: 'Arial Black'; font-size: 2rem; color: #fff;">GOAT</div>
       </div>
@@ -276,13 +277,18 @@ const socialLinks = {
 
       // Al cargar la página, restauramos el idioma guardado y animamos el porcentaje
       window.addEventListener("DOMContentLoaded", () => {
-        // Lógica de la animación del telón (solo se ve 1 vez)
-        const hasSeenCurtain = localStorage.getItem("hasSeenCurtain");
+        // Lógica de la animación del telón
         const curtain = document.getElementById("intro-curtain");
+        const playOnce = curtain ? curtain.getAttribute("data-play-once") === "true" : true;
+        const hasSeenCurtain = localStorage.getItem("hasSeenCurtain");
 
-        if (!hasSeenCurtain && curtain) {
+        // Mostrar si: NO lo ha visto, O si playOnce es false (es decir, mostrar siempre)
+        if (curtain && (!hasSeenCurtain || !playOnce)) {
           // Bloqueamos el scroll mientras se muestra el telón
           document.body.style.overflow = "hidden";
+          
+          // Asegurarnos de que el telón sea visible (por si fue ocultado)
+          curtain.style.display = "flex";
           
           // Esperamos medio segundo para que cargue la web por detrás y luego abrimos el telón
           setTimeout(() => {
@@ -296,7 +302,7 @@ const socialLinks = {
             }, 1500);
           }, 500);
         } else if (curtain) {
-          // Si ya lo vio antes, desaparece el telón de inmediato
+          // Si ya lo vio antes y playOnce es true, desaparece el telón de inmediato sin bloquear scroll
           curtain.style.display = "none";
         }
 
