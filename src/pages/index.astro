@@ -1,0 +1,307 @@
+---
+import "../styles/global.css";
+import FeatureCards from "../components/FeatureCards";
+import Countdown from "../components/Countdown";
+import NotifyForm from "../components/NotifyForm";
+
+// ==========================================
+// CONFIGURACIÓN PRINCIPAL (Cámbialo aquí fácilmente)
+// ==========================================
+const progressPercentage = 25; // Cambia el % de progreso (ej: 95)
+const progressDurationSeconds = 1; // Segundos que dura la animación (ej: 2.5)
+const visualTitleDate = "67 / 06 / 2026"; // Texto de la fecha central que se lee en pantalla
+const countdownTarget = "2026-05-30T18:44:00-05:00"; // Fecha real para el contador (Año-Mes-DíaTHora:Min:Seg-Zona)
+
+// ==========================================
+// CONFIGURACIÓN DE LA INSIGNIA (Badge)
+// ==========================================
+const showBadge = true; // true para mostrar, false para ocultar
+const badgeColor = "var(--primary)"; // Color del punto y borde (puedes usar "#ff0000" o "var(--primary)")
+const badgeBgColor = "rgba(255, 255, 255, 0.8)"; // Fondo de la insignia
+const badgeTextColor = "var(--primary)"; // Color del texto
+
+// ==========================================
+// CONFIGURACIÓN DE ENLACES SOCIALES Y FOOTER
+// ==========================================
+const copyrightText = "© 2026 PlaceInperuXMoon. Todos los derechos reservados.";
+const socialLinks = {
+  x: "https://twitter.com/tu_usuario",
+  instagram: "https://instagram.com/tu_usuario",
+  tiktok: "https://tiktok.com/@tu_usuario",
+  youtube: "https://youtube.com/c/tu_canal",
+  discord: "https://discord.gg/tu_servidor",
+};
+---
+
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lanzamiento Oficial - Goat X Eroge</title>
+    <meta
+      name="description"
+      content="Lanzamiento oficial de la nueva experiencia Goat X Eroge. Descubre un mundo libre, divertido y personalizado."
+    />
+
+  </head>
+  <body>
+    <div class="background-layer">
+      <video autoplay loop muted playsinline class="bg-video">
+        <source src="/background.mp4" type="video/mp4" />
+      </video>
+    </div>
+
+    <!-- Nuestro selector limpio y hermoso -->
+    <div class="custom-lang-selector" id="lang-selector-btn">
+      <svg
+        class="lang-icon"
+        width="16"
+        height="16"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2.5"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
+        <circle cx="12" cy="12" r="10"></circle>
+        <line x1="2" y1="12" x2="22" y2="12"></line>
+        <path
+          d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"
+        ></path>
+      </svg>
+      <span id="current-lang-text">Español</span>
+      <span class="arrow">▼</span>
+
+      <div class="lang-dropdown" id="lang-dropdown-menu">
+        <div class="lang-option" data-val="es">Español</div>
+        <div class="lang-option" data-val="en">English</div>
+        <div class="lang-option" data-val="pt">Português</div>
+        <div class="lang-option" data-val="ko">한국어</div>
+      </div>
+    </div>
+
+    <main class="page-container">
+      {showBadge && (
+        <div 
+          class="proximamente-badge" 
+          style={`background: ${badgeBgColor}; border: 1px solid rgba(0,0,0,0.05); color: ${badgeTextColor};`}
+        >
+          <span class="dot" style={`background-color: ${badgeColor};`}></span>
+          <span data-i18n="badge">PRÓXIMAMENTE</span>
+        </div>
+      )}
+
+      <div class="title-wrapper">
+        <h1 class="title-line-1" data-i18n="launch1">Lanzamiento</h1>
+        <h1 class="title-line-2" data-i18n="launch2">Oficial</h1>
+        <div class="date-text">
+          <span class="date-inner">{visualTitleDate}</span>
+        </div>
+      </div>
+
+      <p class="subtitle" data-i18n="subtitle">
+        Quiero contarles que Goat X Eroge está tomando un nuevo rumbo y
+        evolucionando hacia algo muchísimo más grande, creativo y ambicioso.
+        Después de mucho tiempo planeándolo, decidí trabajar en una
+        experiencia inspirada en el estilo de Roblox, enfocada en ofrecer un
+        mundo más libre, divertido y personalizado para toda la comunidad.
+        Además de un nuevo sistema actualizado del goat con una gran variedad de
+        morphs y animaciones
+      </p>
+
+      <Countdown client:load targetDate={countdownTarget} />
+
+      <FeatureCards client:load />
+
+      <div
+        class="progress-container"
+        style={`--target-progress: ${progressPercentage}%; --anim-duration: ${progressDurationSeconds}s;`}
+      >
+        <div class="progress-header">
+          <span class="label" data-i18n="progress">Progreso del desarrollo</span
+          >
+          <span
+            class="pct"
+            data-target={progressPercentage}
+            data-duration={progressDurationSeconds * 1000}
+            >{progressPercentage}%</span
+          >
+        </div>
+        <div class="progress-track">
+          <div class="progress-fill"></div>
+        </div>
+      </div>
+
+      <NotifyForm client:load />
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer-content">
+        <p class="copyright">{copyrightText}</p>
+        <div class="social-icons">
+          <a
+            href={socialLinks.x}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="X (Twitter)"
+          >
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+            </svg>
+          </a>
+          <a href={socialLinks.instagram} target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/>
+            </svg>
+          </a>
+          <a href={socialLinks.tiktok} target="_blank" rel="noopener noreferrer" aria-label="TikTok">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z"/>
+            </svg>
+          </a>
+          <a href={socialLinks.youtube} target="_blank" rel="noopener noreferrer" aria-label="YouTube">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.5 12 3.5 12 3.5s-7.505 0-9.377.55a3.016 3.016 0 0 0-2.122 2.136C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.55 9.376.55 9.376.55s7.505 0 9.377-.55a3.016 3.016 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+            </svg>
+          </a>
+          <a
+            href={socialLinks.discord}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Discord"
+          >
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M20.317 4.3698a19.7913 19.7913 0 00-4.8851-1.5152.0741.0741 0 00-.0785.0371c-.211.3753-.4447.8648-.6083 1.2495-1.8447-.2762-3.68-.2762-5.4868 0-.1636-.3933-.4058-.8742-.6177-1.2495a.077.077 0 00-.0785-.037 19.7363 19.7363 0 00-4.8852 1.515.0699.0699 0 00-.0321.0277C.5334 9.0458-.319 13.5799.0992 18.0578a.0824.0824 0 00.0312.0561c2.0528 1.5076 4.0413 2.4228 5.9929 3.0294a.0777.0777 0 00.0842-.0276c.4616-.6304.8731-1.2952 1.226-1.9942a.076.076 0 00-.0416-.1057c-.6528-.2476-1.2743-.5495-1.8722-.8923a.077.077 0 01-.0076-.1277c.1258-.0943.2517-.1923.3718-.2914a.0743.0743 0 01.0776-.0105c3.9278 1.7933 8.18 1.7933 12.0614 0a.0739.0739 0 01.0785.0095c.1202.099.246.1981.3728.2924a.077.077 0 01-.0066.1276 12.2986 12.2986 0 01-1.873.8914.0766.0766 0 00-.0407.1067c.3604.698.7719 1.3628 1.225 1.9932a.076.076 0 00.0842.0286c1.961-.6067 3.9495-1.5219 6.0023-3.0294a.077.077 0 00.0313-.0552c.5004-5.177-.8382-9.6739-3.5485-13.6604a.061.061 0 00-.0312-.0286zM8.02 15.3312c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9555-2.4189 2.157-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.9555 2.4189-2.1569 2.4189zm7.9748 0c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9554-2.4189 2.1569-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.946 2.4189-2.1568 2.4189z"></path>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </footer>
+
+    <script type="text/javascript">
+      const dict = {
+        es: {
+          badge: "PRÓXIMAMENTE",
+          launch1: "Lanzamiento",
+          launch2: "Oficial",
+          subtitle:
+            "Quiero contarles que Goat X Eroge está tomando un nuevo rumbo y evolucionando hacia algo muchísimo más grande, creativo y ambicioso. Después de mucho tiempo planeándolo, decidí trabajar en una experiencia inspirada en el estilo de Roblox, enfocada en ofrecer un mundo más libre, divertido y personalizado para toda la comunidad. Además de un nuevo sistema actualizado del goat con una gran variedad de morphs y animaciones",
+          progress: "Progreso del desarrollo",
+        },
+        en: {
+          badge: "COMING SOON",
+          launch1: "Official",
+          launch2: "Launch",
+          subtitle:
+            "I want to tell you that Goat X Eroge is taking a new direction and evolving into something much bigger, more creative and ambitious. After a long time planning it, I decided to work on an experience inspired by the Roblox style, focused on offering a freer, more fun and personalized world for the whole community. Plus a new updated goat system with a huge variety of morphs and animations",
+          progress: "Development progress",
+        },
+        pt: {
+          badge: "EM BREVE",
+          launch1: "Lançamento",
+          launch2: "Oficial",
+          subtitle:
+            "Quero contar que Goat X Eroge está tomando um novo rumo e evoluindo para algo muito maior, mais criativo e ambicioso. Depois de muito tempo de planejamento, decidi trabalhar numa experiência inspirada no estilo do Roblox, focada em oferecer um mundo mais livre, divertido e personalizado para toda a comunidade. Além disso, um novo sistema de cabras atualizado com uma enorme variedade de morfos e animações",
+          progress: "Progresso do desenvolvimento",
+        },
+        ko: {
+          badge: "곧 출시됨",
+          launch1: "공식",
+          launch2: "출시",
+          subtitle:
+            "Goat X Eroge가 새로운 방향으로 나아가고 있으며 더 크고 창의적이고 야심찬 무언가로 발전하고 있다는 사실을 여러분께 알려드리고 싶습니다. 오랜 기간의 계획 끝에 저는 전체 커뮤니티를 위해 더 자유롭고 재미있고 개인화된 세계를 제공하는 데 초점을 맞춘 Roblox 스타일에서 영감을 받은 경험을 작업하기로 결정했습니다. 또한 매우 다양한 모프와 애니메이션이 포함된 새롭게 업데이트된 염소 시스템입니다.",
+          progress: "개발 진행",
+        },
+      };
+
+      function updateDOM(lang) {
+        const texts = dict[lang] || dict["es"];
+        document.querySelectorAll("[data-i18n]").forEach((el) => {
+          const key = el.getAttribute("data-i18n");
+          if (texts[key]) el.textContent = texts[key];
+        });
+        // Notificar a los componentes de React que el idioma cambió
+        window.dispatchEvent(
+          new CustomEvent("languageChanged", { detail: lang }),
+        );
+      }
+
+      window.changeLanguage = function (lang) {
+        localStorage.setItem("site_lang", lang);
+        updateDOM(lang);
+      };
+
+      // Custom Dropdown Logic
+      const langBtn = document.getElementById("lang-selector-btn");
+      const langMenu = document.getElementById("lang-dropdown-menu");
+      const langText = document.getElementById("current-lang-text");
+      const langNames = {
+        es: "Español",
+        en: "English",
+        pt: "Português",
+        ko: "한국어",
+      };
+
+      langBtn.addEventListener("click", (e) => {
+        if (e.target.closest(".lang-option")) return;
+        langMenu.classList.toggle("show");
+      });
+
+      document.addEventListener("click", (e) => {
+        if (!langBtn.contains(e.target)) {
+          langMenu.classList.remove("show");
+        }
+      });
+
+      document.querySelectorAll(".lang-option").forEach((opt) => {
+        opt.addEventListener("click", (e) => {
+          const val = e.target.getAttribute("data-val");
+          langText.textContent = langNames[val] || langNames["es"];
+          changeLanguage(val);
+          langMenu.classList.remove("show");
+        });
+      });
+
+      // Al cargar la página, restauramos el idioma guardado y animamos el porcentaje
+      window.addEventListener("DOMContentLoaded", () => {
+        const lang = localStorage.getItem("site_lang") || "es";
+        langText.textContent = langNames[lang] || langNames["es"];
+        if (lang !== "es") {
+          updateDOM(lang);
+        }
+
+        // Animación del número de progreso
+        const pctElement = document.querySelector(".pct");
+        if (pctElement) {
+          const targetValue =
+            parseInt(pctElement.getAttribute("data-target"), 10) || 95;
+          const duration =
+            parseInt(pctElement.getAttribute("data-duration"), 10) || 1500;
+          let startTimestamp = null;
+
+          const animateProgress = (timestamp) => {
+            if (!startTimestamp) startTimestamp = timestamp;
+            const progress = Math.min(
+              (timestamp - startTimestamp) / duration,
+              1,
+            );
+            // Easing ease-out para que se sincronice visualmente con la barra (CSS ease-out)
+            const easeOutProgress = 1 - Math.pow(1 - progress, 3);
+            const currentValue = Math.floor(easeOutProgress * targetValue);
+
+            pctElement.textContent = currentValue + "%";
+
+            if (progress < 1) {
+              window.requestAnimationFrame(animateProgress);
+            } else {
+              pctElement.textContent = targetValue + "%"; // Asegurar final exacto
+            }
+          };
+          window.requestAnimationFrame(animateProgress);
+        }
+      });
+    </script>
+  </body>
+</html>
